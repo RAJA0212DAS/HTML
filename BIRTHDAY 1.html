@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Wish</title>
+    <style>
+      :root {
+        --bg: #f0fff4;
+        --ink: #173826;
+        --primary: #2d6a4f;
+        --secondary: #95d5b2;
+        --accent: #f77f00;
+        --paper: rgba(255, 255, 255, 0.88);
+        --line: rgba(23, 56, 38, 0.16);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 20%, var(--secondary) 0 9%, transparent 10%),
+          radial-gradient(circle at 86% 18%, var(--accent) 0 7%, transparent 8%),
+          linear-gradient(135deg, var(--bg), color-mix(in srgb, var(--primary) 18%, var(--bg)));
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .birthday-card {
+        width: min(100%, 980px);
+        display: grid;
+        grid-template-columns: 1fr 0.75fr;
+        overflow: hidden;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+      }
+
+      .wish-text {
+        display: grid;
+        gap: 24px;
+        align-content: center;
+        min-height: 620px;
+        padding: clamp(30px, 7vw, 70px);
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--primary);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: clamp(3rem, 8vw, 7rem);
+        line-height: 0.95;
+      }
+
+      .message {
+        max-width: 62ch;
+        margin: 0;
+        font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+        line-height: 1.65;
+      }
+
+      .signature {
+        width: fit-content;
+        margin: 0;
+        padding-top: 8px;
+        border-top: 3px solid var(--secondary);
+        font-weight: 900;
+      }
+
+      .stage {
+        position: relative;
+        display: grid;
+        min-height: 620px;
+        place-items: center;
+        overflow: hidden;
+        background: color-mix(in srgb, var(--primary) 18%, transparent);
+      }
+
+      .cake {
+        position: relative;
+        width: min(78%, 330px);
+        aspect-ratio: 1;
+      }
+
+      .plate,
+      .layer,
+      .candle,
+      .flame {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .plate {
+        bottom: 18%;
+        width: 88%;
+        height: 8%;
+        background: color-mix(in srgb, var(--ink) 18%, white);
+        border-radius: 999px;
+      }
+
+      .layer {
+        width: 74%;
+        height: 19%;
+        background: var(--primary);
+        border: 4px solid color-mix(in srgb, var(--ink) 12%, var(--primary));
+        border-radius: 8px 8px 18px 18px;
+        box-shadow: inset 0 -16px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      .layer.one {
+        bottom: 25%;
+      }
+
+      .layer.two {
+        bottom: 43%;
+        width: 60%;
+        background: var(--secondary);
+      }
+
+      .layer.three {
+        bottom: 60%;
+        width: 44%;
+        background: var(--accent);
+      }
+
+      .candle {
+        bottom: 79%;
+        width: 7%;
+        height: 18%;
+        background: repeating-linear-gradient(45deg, white 0 8px, var(--primary) 8px 14px);
+        border-radius: 5px;
+      }
+
+      .flame {
+        bottom: 95%;
+        width: 13%;
+        height: 18%;
+        background: var(--secondary);
+        border-radius: 60% 60% 60% 10%;
+        transform: translateX(-50%) rotate(45deg);
+        animation: flicker 1.1s ease-in-out infinite alternate;
+      }
+
+      @keyframes flicker {
+        from {
+          scale: 0.92;
+          filter: brightness(1);
+        }
+
+        to {
+          scale: 1.06;
+          filter: brightness(1.18);
+        }
+      }
+
+      @media (max-width: 760px) {
+        .birthday-card {
+          grid-template-columns: 1fr;
+        }
+
+        .stage {
+          min-height: 340px;
+          order: -1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="birthday-card">
+        <div class="wish-text">
+          <p class="eyebrow" id="smallText"></p>
+          <h1 id="birthdayTitle"></h1>
+          <p class="message" id="birthdayMessage"></p>
+          <p class="signature" id="birthdayFrom"></p>
+        </div>
+
+        <div class="stage">
+          <div class="cake">
+            <div class="flame"></div>
+            <div class="candle"></div>
+            <div class="layer three"></div>
+            <div class="layer two"></div>
+            <div class="layer one"></div>
+            <div class="plate"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Edit only this section.
+      const birthdayPersonName = "Raja";
+      const birthdayMessage =
+        "Have a beautiful birthday filled with sweet surprises and bright moments.";
+      const yourName = "Codex";
+
+      document.getElementById("smallText").textContent =
+        `A special day for ${birthdayPersonName}`;
+
+      document.getElementById("birthdayTitle").textContent =
+        `Happy Birthday, ${birthdayPersonName}!`;
+
+      document.getElementById("birthdayMessage").textContent = birthdayMessage;
+
+      document.getElementById("birthdayFrom").textContent =
+        `With love, ${yourName}`;
+    </script>
+  </body>
+</html>
