@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Love Forever - Crimson Dark Premium Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* --- Exact Match Background from Screenshot 2026-06-13 152943.png --- */
+    body {
+      background-color: #000000;
+      /* Top crimson red aura fading into pure black at the bottom */
+      background-image: linear-gradient(to bottom, #4a0404 0%, #150000 35%, #000000 100%);
+      background-attachment: fixed;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* --- Ambient Crimson Moving Glow --- */
+    .bg-glow {
+      position: absolute;
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(139, 0, 0, 0.25) 0%, rgba(0,0,0,0) 70%);
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 0;
+      pointer-events: none;
+      animation: ambientPulse 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes ambientPulse {
+      0% { opacity: 0.6; transform: translate(-50%, -10%) scale(0.9); }
+      100% { opacity: 1; transform: translate(-50%, 5%) scale(1.1); }
+    }
+
+    /* --- Tiny Subtle Stars Matching the Image --- */
+    .star {
+      position: absolute;
+      background-color: #ffcccc;
+      border-radius: 50%;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #ui {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+
+    /* --- Love Structure Positioning --- */
+    #ui .love {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -225px 0 0 -225px; 
+      --i: 1;
+      cursor: pointer;
+    }
+
+    /* --- Luxury Crimson & Gold Matching Typography --- */
+    #ui .love_word {
+      /* Matching vibrant ruby red to gold text gradient */
+      background: linear-gradient(135deg, #ff3344 0%, #ff6677 50%, #ffcc66 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.6rem;
+      font-weight: 700;
+      transform: translateY(-100%) rotateZ(-30deg);
+      filter: drop-shadow(0 0 10px rgba(255, 51, 68, 0.45));
+      letter-spacing: 3px;
+      white-space: nowrap;
+      opacity: 0.82;
+      transition: transform 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Alternating Deep Red-Orange Shades for Depth */
+    #ui .love:nth-child(even) .love_word {
+      background: linear-gradient(135deg, #cc0022 0%, #ff1a40 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px rgba(204, 0, 34, 0.5));
+    }
+
+    /* --- Hover Effects: Freeze Animation & Brighten --- */
+    #ui .love:hover .love_horizontal,
+    #ui .love:hover .love_vertical {
+      animation-play-state: paused !important;
+    }
+
+    #ui .love:hover .love_word {
+      transform: translateY(-100%) rotateZ(-30deg) scale(1.25);
+      opacity: 1;
+      filter: drop-shadow(0 0 25px #ff3344) brightness(1.3);
+    }
+
+    /* --- Smooth Mathematical Heart Animations --- */
+    #ui .love_horizontal {
+      animation: horizontal 14000ms infinite alternate ease-in-out;
+      animation-delay: calc(var(--i) * -340ms);
+    }
+    
+    #ui .love_vertical {
+      animation: vertical 28000ms infinite linear;
+      animation-delay: calc(var(--i) * -340ms);
+    }
+
+    @keyframes horizontal {
+      from { transform: translateX(-80px); }
+      to   { transform: translateX(530px); }
+    }
+
+    @keyframes vertical {
+      0%   { transform: translateY(180px); }
+      10%  { transform: translateY(45px); }
+      15%  { transform: translateY(4.5px); }
+      18%  { transform: translateY(0px); }
+      20%  { transform: translateY(4.5px); }
+      22%  { transform: translateY(34.61538px); }
+      24%  { transform: translateY(64.28571px); }
+      25%  { transform: translateY(112.5px); }
+      26%  { transform: translateY(64.28571px); }
+      28%  { transform: translateY(34.61538px); }
+      30%  { transform: translateY(4.5px); }
+      32%  { transform: translateY(0px); }
+      35%  { transform: translateY(4.5px); }
+      40%  { transform: translateY(45px); }
+      50%  { transform: translateY(180px); }
+      71%  { transform: translateY(428.57143px); }
+      72.5%{ transform: translateY(441.17647px); }
+      75%  { transform: translateY(450px); }
+      77.5%{ transform: translateY(441.17647px); }
+      79%  { transform: translateY(428.57143px); }
+      100% { transform: translateY(180px); }
+    }
+
+    /* --- Dynamic Random Screen Exit Animations --- */
+    .exit-left-animate {
+      animation: shakeAndLeft 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
+    }
+
+    .exit-right-animate {
+      animation: shakeAndRight 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards !important;
+    }
+
+    @keyframes shakeAndLeft {
+      0%   { transform: translateX(0) scale(1); opacity: 1; }
+      15%  { transform: translateX(-25px); }
+      30%  { transform: translateX(20px); }
+      45%  { transform: translateX(-15px); }
+      60%  { transform: translateX(10px); opacity: 0.9; }
+      100% { transform: translateX(-1600px) scale(0.6); opacity: 0; } /* Flies entirely off-screen to the LEFT */
+    }
+
+    @keyframes shakeAndRight {
+      0%   { transform: translateX(0) scale(1); opacity: 1; }
+      15%  { transform: translateX(-20px); }
+      30%  { transform: translateX(25px); }
+      45%  { transform: translateX(-15px); }
+      60%  { transform: translateX(10px); opacity: 0.9; }
+      100% { transform: translateX(1600px) scale(0.6); opacity: 0; } /* Flies entirely off-screen to the RIGHT */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Image Gradient Glow Overlay -->
+  <div class="bg-glow"></div>
+  <div id="ui"></div>
+
+  <script>
+    const N = 95; 
+    const ui = document.getElementById('ui');
+
+    // Create background stars matching Screenshot 2026-06-13 152943.png
+    for (let s = 0; s < 15; s++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 2 + 1 + 'px';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * 80 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.opacity = Math.random() * 0.5 + 0.2;
+      document.body.appendChild(star);
+    }
+
+    // Generate Heart Shape Structure
+    for (let i = 1; i <= N; i++) {
+      const love = document.createElement('div');
+      love.className = 'love';
+      love.style.setProperty('--i', i);
+
+      const h = document.createElement('div');
+      h.className = 'love_horizontal';
+
+      const v = document.createElement('div');
+      v.className = 'love_vertical';
+
+      const word = document.createElement('div');
+      word.className = 'love_word';
+      word.textContent = 'I love you Chini 💝';
+
+      // Click Event for Dynamic 50/50 Screen Exit
+      love.addEventListener('click', () => {
+        h.style.animationPlayState = 'paused';
+        v.style.animationPlayState = 'paused';
+
+        // Choose random direction to throw it out completely off-screen
+        const randomExit = Math.random() < 0.5 ? 'exit-left-animate' : 'exit-right-animate';
+        word.classList.add(randomExit);
+        love.style.pointerEvents = 'none';
+
+        // Respawn nicely after 5 seconds
+        setTimeout(() => {
+          word.classList.remove('exit-left-animate', 'exit-right-animate');
+          h.style.animationPlayState = 'running';
+          v.style.animationPlayState = 'running';
+          love.style.pointerEvents = 'auto';
+        }, 5000);
+      });
+
+      v.appendChild(word);
+      h.appendChild(v);
+      love.appendChild(h);
+      ui.appendChild(love);
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+            const footerDiv = document.createElement('div');
+            footerDiv.innerText = 'Create by Soumaparit';
+            
+            // সিএসএস স্টাইল (Chai রঙ এবং ফ্লোটিং পজিশন দেওয়া হয়েছে)
+            footerDiv.style.color = '#ffffff23'; 
+            footerDiv.style.fontSize = '14px';
+            footerDiv.style.fontWeight = 'bold';
+            footerDiv.style.textAlign = 'center';
+            footerDiv.style.padding = '10px';
+            footerDiv.style.position = 'fixed';
+            footerDiv.style.bottom = '10px';
+            footerDiv.style.left = '0';
+            footerDiv.style.width = '100%';
+            footerDiv.style.zIndex = '9999'; // সবার ওপরে দেখানোর জন্য সর্বাধিক z-index
+            footerDiv.style.pointerEvents = 'none'; // যাতে নিচের কোন বাটনে ক্লিক করতে সমস্যা না হয়
+            
+            document.body.appendChild(footerDiv);
+        });
+  </script>
+</body>
+</html>
