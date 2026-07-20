@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? 💖</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts for better text styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Beautiful gradient background */
+            background: linear-gradient(135deg, #ffe5e5 0%, #ffb6c1 100%);
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            gap: 15px;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.2);
+            position: relative;
+        }
+        /* Photo container style */
+        .photo-box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .photo-box img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(233, 30, 99, 0.2);
+        }
+        h1 {
+            color: #d81b60;
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+        p {
+            color: #4a4a4a;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+        .btn a {
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: linear-gradient(45deg, #ff4081, #e91e63);
+            padding: 12px 35px;
+            border-radius: 30px;
+            box-shadow: 0 8px 15px rgba(233, 30, 99, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 20px rgba(233, 30, 99, 0.4);
+        }
+        /* Make the moving No button slightly different */
+        #move-random {
+            cursor: pointer;
+            background: #9e9e9e !important;
+            box-shadow: 0 8px 15px rgba(158, 158, 158, 0.3);
+        }
+        .proposal-screen {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Section 1 -->
+        <div id="proposal-1" class="proposal-screen">
+            <div class="photo-box">
+                <!-- Replace src with your own photo link -->
+                <img src="https://i.ibb.co/mCpLQyBr/123.gif" alt="Cute Proposal">
+            </div>
+            <h1>Hey <span id="JSOrganization-placeholder"></span>! 💖</h1>
+            <p>I love you more than anything.<br>Will you be mine forever?</p>
+            <div class="btn">
+                <a href="#" onclick="showProposal('proposal-yes')">💖 Yes</a>
+                <a href="#" onclick="showProposal('proposal-2')">💔 No</a>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div id="proposal-2" class="proposal-screen">
+            <div class="photo-box">
+                <img src="https://i.ibb.co/kgBnKJKc/Tkthao219-Bubududu-Sticker-Tkthao219-Bubududu-Panda-Discover-Share-GIFs.gif" alt="Sad">
+            </div>
+            <h1>Are you sure? 🥺</h1>
+            <p>You mean everything to me.<br>Please say yes!</p>
+            <div class="btn">
+                <a href="#" onclick="showProposal('proposal-yes')">🥰 Yes</a>
+                <a href="#" onclick="showProposal('proposal-3')">😢 No</a>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div id="proposal-3" class="proposal-screen">
+            <div class="photo-box">
+                <img src="https://i.ibb.co/zVTNtrkR/Llorar-funny-gifs-for-all-of-cats-dogs-and-every-thinngs.gif" alt="Crying">
+            </div>
+            <h1>My heart is breaking... 💔</h1>
+            <p>I can't imagine my life without you.<br>Please give us a chance!</p>
+            <div class="btn">
+                <a href="#" onclick="showProposal('proposal-yes')">😍 Yes</a>
+                <a href="#" onclick="showProposal('proposal-4')">😭 No</a>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div id="proposal-4" class="proposal-screen">
+            <div class="photo-box">
+                <img src="https://i.ibb.co/1GSxYwVm/Bubu-Bubu-Dudu-Sticker-Bubu-Bubu-dudu-Love-Discover-Share-GIFs.gif" alt="Begging">
+            </div>
+            <h1>Don't leave me... 😭</h1>
+            <p>You're my everything.<br>Please say yes and make me the happiest person!</p>
+            <div class="btn">
+                <a href="#" onclick="showProposal('proposal-yes')">❤️ Yes</a>
+                <a href="#" id="move-random">💔 No</a>
+            </div>
+        </div>
+
+        <!-- Section YES -->
+        <div id="proposal-yes" class="proposal-screen">
+            <div class="photo-box">
+                <img src="https://i.ibb.co/YBRQv15G/5.gif" alt="Happy">
+            </div>
+            <h1>You said YES! 🥰</h1>
+            <p>I love you, <span id="JSOrganization-placeholder-5"></span>.<br>Let's make forever amazing! 💞</p>
+        </div>
+    </div>
+
+    <script>
+        // Get Name from URL (?name=YourName)
+        function getJSOrganization() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('name') || "Love";
+        }
+
+        const JSOrganization = getJSOrganization();
+        document.querySelectorAll('[id^="JSOrganization-placeholder"]').forEach(el => el.textContent = JSOrganization);
+
+        // Show specific proposal screen
+        function showProposal(id) {
+            document.querySelectorAll('.proposal-screen').forEach(screen => screen.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            
+            if (id === 'proposal-yes') {
+                document.body.style.background = 'linear-gradient(135deg, #ffecf0 0%, #ffc0cb 100%)';
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.5 }, colors: ['#ff0000', '#ffc0cb', '#ffffff'] });
+            }
+        }
+
+        // Move random button functionality for "No"
+        function moveRandomEl(el) {
+            el.style.position = "fixed";
+            el.style.top = Math.floor(Math.random() * 80 + 10) + "%";
+            el.style.left = Math.floor(Math.random() * 80 + 10) + "%";
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show the first screen initially
+            showProposal('proposal-1');
+
+            // Add event listeners to the moving "No" button
+            const moveBtn = document.getElementById('move-random');
+            moveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                moveRandomEl(e.target);
+            });
+            moveBtn.addEventListener('mouseenter', (e) => {
+                moveRandomEl(e.target);
+            });
+        });
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerDiv = document.createElement('div');
+            footerDiv.innerText = 'Create by Soumaparit';
+            
+            // সিএসএস স্টাইল (Chai রঙ এবং ফ্লোটিং পজিশন দেওয়া হয়েছে)
+            footerDiv.style.color = '#ff8cb7'; 
+            footerDiv.style.fontSize = '14px';
+            footerDiv.style.fontWeight = 'bold';
+            footerDiv.style.textAlign = 'center';
+            footerDiv.style.padding = '10px';
+            footerDiv.style.position = 'fixed';
+            footerDiv.style.bottom = '10px';
+            footerDiv.style.left = '0';
+            footerDiv.style.width = '100%';
+            footerDiv.style.zIndex = '9999'; // সবার ওপরে দেখানোর জন্য সর্বাধিক z-index
+            footerDiv.style.pointerEvents = 'none'; // যাতে নিচের কোন বাটনে ক্লিক করতে সমস্যা না হয়
+            
+            document.body.appendChild(footerDiv);
+        });
+    </script>
+</body>
+</html>
